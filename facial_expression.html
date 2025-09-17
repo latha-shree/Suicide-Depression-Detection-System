@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Facial Expression Recognition for Predicting Suicidal Attempts</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f7f7f7;
+            font-family: 'Arial', sans-serif;
+        }
+        h1 {
+            font-family: 'Roboto', sans-serif;
+            color: #333;
+            font-size: 2.5em;
+            margin-bottom: 30px;
+        }
+        p {
+            font-family: 'Roboto', sans-serif;
+            font-size: 1.1em;
+            color: #555;
+        }
+        footer {
+            background-color: #76b852;
+            color: white;
+            padding: 20px;
+            font-family: 'Roboto', sans-serif;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+        .btn-lg {
+            background-color: #76b852;
+            color: white;
+            font-size: 1.2em;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+        }
+        .btn-lg:hover {
+            background-color: #5c9e43;
+            transition: background-color 0.3s ease;
+        }
+        .chat-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-size: 1em;
+            text-decoration: none;
+        }
+        .chat-button:hover {
+            background-color: #0056b3;
+            transition: background-color 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+    <!-- Chatbot button -->
+    <a href="/chat" class="chat-button">Chatbot</a>
+
+    <div class="container mt-5">
+        <h1 class="text-center"> Predicting Suicidal Attempts by Facial Expression Recognition </h1>
+        <p class="text-center text-muted">Capture images to analyze stress through facial expressions and predict suicidal attempts.</p>
+
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <div class="alert alert-warning text-center" role="alert">
+                {{ messages[0] }}
+            </div>
+        {% endif %}
+        {% endwith %}
+
+        <form action="/facial_expression" method="POST">
+            <div class="text-center mt-4">
+                <button type="submit" class="btn btn-lg">Start Analysis</button>
+            </div>
+        </form>
+    </div>
+
+    <footer class="text-center mt-5">
+        <p class="text-muted">Sucidial Attempts Prediction</p>
+    </footer>
+</body>
+</html>

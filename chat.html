@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sucidial Based Q&A Chatbot</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #e0e7ff, #f9f9f9);
+      margin: 0;
+      padding: 0;
+    }
+
+    #chat-container {
+      max-width: 850px;
+      margin: 60px auto;
+      padding: 40px 30px;
+      background: #ffffff;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+      border-radius: 16px;
+      transition: all 0.3s ease;
+    }
+
+    h1 {
+      text-align: center;
+      background: linear-gradient(90deg, #6c63ff, #4a44b1);
+      color: white;
+      padding: 15px;
+      border-radius: 8px;
+      font-size: 28px;
+      margin-bottom: 30px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    #emotion-buttons {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 25px;
+    }
+
+    #emotion-buttons button {
+      width: 240px;
+      padding: 12px 18px;
+      background: #6c63ff;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 3px 8px rgba(108, 99, 255, 0.25);
+    }
+
+    #emotion-buttons button:hover {
+      background: #554ddb;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 14px rgba(108, 99, 255, 0.3);
+    }
+
+    #chat-box {
+      max-height: 550px;
+      overflow-y: auto;
+      background: #fafafa;
+      padding: 20px;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      transition: 0.3s;
+    }
+
+    .question {
+      color: #3f51b5;
+      cursor: pointer;
+      font-weight: 600;
+      margin-bottom: 10px;
+      padding: 10px 15px;
+      background-color: #eef1ff;
+      border-left: 5px solid #6c63ff;
+      border-radius: 6px;
+      transition: background-color 0.3s ease;
+    }
+
+    .question:hover {
+      background-color: #e0e5ff;
+    }
+
+    .answer {
+      margin: 0 0 20px 20px;
+      padding: 15px;
+      background-color: #f0f4ff;
+      border-radius: 6px;
+      display: none;
+      animation: fadeIn 0.3s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-5px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .bot-message {
+      background-color: #e1eaff;
+      padding: 12px;
+      border-radius: 6px;
+      margin-bottom: 15px;
+      color: #333;
+      font-style: italic;
+    }
+
+    @media (max-width: 600px) {
+      #emotion-buttons button {
+        width: 100%;
+      }
+
+      #chat-container {
+        padding: 20px;
+        margin: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="chat-container">
+    <h1>🎯 Sucidial Based Q&A Chatbot</h1>
+
+    <div id="emotion-buttons">
+      <button onclick="getQA('Happy')">😊 Happy</button>
+      <button onclick="getQA('Sad')">😢 Sad</button>
+      <button onclick="getQA('Fear')">😨 Fear</button>
+      <button onclick="getQA('Angry')">😠 Angry</button>
+      <button onclick="getQA('Contempt')">😒 Contempt</button>
+      <button onclick="getQA('Love')">❤️ Love</button>
+      <button onclick="getQA('Depression')">😔 Depression</button>
+      <button onclick="getQA('Guilty')">😔 Guilty</button>
+      
+    </div>
+
+    <div id="chat-box">
+      <div class="bot-message">Please select an emotion to see related questions.</div>
+    </div>
+  </div>
+
+  <script>
+    const chatBox = document.getElementById("chat-box");
+
+    function getQA(emotion) {
+      chatBox.innerHTML = `<div class="bot-message">🔄 Loading ${emotion} questions...</div>`;
+
+      fetch("/get_qa_by_emotion", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ emotion: emotion }),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          chatBox.innerHTML = "";
+
+          if (data.qa.length === 0) {
+            chatBox.innerHTML = `<div class="bot-message">No Q&A found for ${emotion}.</div>`;
+          } else {
+            data.qa.forEach((item, index) => {
+              const qEl = document.createElement("div");
+              qEl.className = "question";
+              qEl.innerText = `Q${index + 1}: ${item.question}`;
+              qEl.addEventListener("click", () => {
+                const ansEl = qEl.nextElementSibling;
+                ansEl.style.display = ansEl.style.display === "block" ? "none" : "block";
+              });
+
+              const aEl = document.createElement("div");
+              aEl.className = "answer";
+              aEl.innerHTML = `<strong>Answer:</strong> ${item.answer}`;
+
+              chatBox.appendChild(qEl);
+              chatBox.appendChild(aEl);
+            });
+          }
+        })
+        .catch((err) => {
+          chatBox.innerHTML = `<div class="bot-message">⚠️ Something went wrong. Please try again later.</div>`;
+        });
+    }
+  </script>
+</body>
+</html>

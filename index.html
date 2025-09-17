@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stress Detection</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f8fc;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0;
+            padding: 20px;
+        }
+        h1, h3 {
+            color: #333;
+        }
+        .container {
+            max-width: 700px;
+            width: 100%;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+            text-align: center;
+        }
+        .question {
+            margin-top: 20px;
+            text-align: left;
+        }
+        .options {
+            margin-top: 10px;
+        }
+        .options label {
+            display: block;
+            margin: 5px 0;
+            font-size: 0.9em;
+        }
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 1em;
+            color: #fff;
+            background-color: #4CAF50;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        a {
+            display: block;
+            margin-top: 10px;
+            color: #4CAF50;
+            text-decoration: none;
+        }
+        a:hover {
+            color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" style="background-color: #8fe792;">
+        <h1 style="color: rgb(238, 102, 102);">Submit Stress Data</h1>
+        <form id="mainForm" method="post">
+            <!-- Sample Questions -->
+            <div class="question">
+                <h3>1. How frequently do you find yourself rushing to meet assignment deadlines?</h3>
+                <div class="options">
+                    <label><input type="radio" name="q1" value="1"> Never</label>
+                    <label><input type="radio" name="q1" value="2"> Rarely</label>
+                    <label><input type="radio" name="q1" value="3"> Sometimes</label>
+                    <label><input type="radio" name="q1" value="4"> Often</label>
+                    <label><input type="radio" name="q1" value="5"> Always</label>
+                </div>
+            </div>
+
+            <div class="question">
+                <h3>2. Do you feel anxious about upcoming exam schedules?</h3>
+                <div class="options">
+                    <label><input type="radio" name="q2" value="1"> Not at all</label>
+                    <label><input type="radio" name="q2" value="2"> Rarely</label>
+                    <label><input type="radio" name="q2" value="3"> Sometimes</label>
+                    <label><input type="radio" name="q2" value="4"> Often</label>
+                    <label><input type="radio" name="q2" value="5"> Always</label>
+                </div>
+            </div>
+
+            <!-- Additional Questions -->
+            <div class="question">
+                <h3>3. How much does exam preparation affect your sleep schedule?</h3>
+                <div class="options">
+                    <label><input type="radio" name="q3" value="1"> Not at all</label>
+                    <label><input type="radio" name="q3" value="2"> Slightly</label>
+                    <label><input type="radio" name="q3" value="3"> Moderately</label>
+                    <label><input type="radio" name="q3" value="4"> Significantly</label>
+                    <label><input type="radio" name="q3" value="5"> Extremely</label>
+                </div>
+            </div>
+
+            <div class="question">
+                <h3>4. How often do you feel isolated or disconnected from your social circle during exams?</h3>
+                <div class="options">
+                    <label><input type="radio" name="q4" value="1"> Never</label>
+                    <label><input type="radio" name="q4" value="2"> Rarely</label>
+                    <label><input type="radio" name="q4" value="3"> Sometimes</label>
+                    <label><input type="radio" name="q4" value="4"> Often</label>
+                    <label><input type="radio" name="q4" value="5"> Always</label>
+                </div>
+            </div>
+    
+            <div class="question">
+                <h3>5. How frequently do you engage in physical exercise or activity (e.g., gym, sports, walking)?</h3>
+                <div class="options">
+                    <label><input type="radio" name="q5" value="1"> Never</label>
+                    <label><input type="radio" name="q5" value="2"> Once a week</label>
+                    <label><input type="radio" name="q5" value="3"> 2-3 times a week</label>
+                    <label><input type="radio" name="q5" value="4"> 4-5 times a week</label>
+                    <label><input type="radio" name="q5" value="5"> Daily</label>
+                </div>
+            </div>
+    
+            <div class="question">
+                <h3>6. How often do you spend time with friends or family for social activities?</h3>
+                <div class="options">
+                    <label><input type="radio" name="q6" value="1"> Never</label>
+                    <label><input type="radio" name="q6" value="2"> Rarely</label>
+                    <label><input type="radio" name="q6" value="3"> Sometimes</label>
+                    <label><input type="radio" name="q6" value="4"> Often</label>
+                    <label><input type="radio" name="q6" value="5"> Always</label>
+                </div>
+            </div>
+    
+            <div class="question">
+                <h3>7. How frequently do you feel emotionally drained from managing personal relationships (family, friends, romantic)?</h3>
+                <div class="options">
+                    <label><input type="radio" name="q7" value="1"> Never</label>
+                    <label><input type="radio" name="q7" value="2"> Rarely</label>
+                    <label><input type="radio" name="q7" value="3"> Sometimes</label>
+                    <label><input type="radio" name="q7" value="4"> Often</label>
+                    <label><input type="radio" name="q7" value="5"> Always</label>
+                </div>
+            </div>
+    
+            <div class="question">
+                <h3>8. How often do you feel overwhelmed by social commitments (e.g., meeting friends, attending events)?</h3>
+                <div class="options">
+                    <label><input type="radio" name="q8" value="1"> Never</label>
+                    <label><input type="radio" name="q8" value="2"> Rarely</label>
+                    <label><input type="radio" name="q8" value="3"> Sometimes</label>
+                    <label><input type="radio" name="q8" value="4"> Often</label>
+                    <label><input type="radio" name="q8" value="5"> Always</label>
+                </div>
+            </div>
+    
+            <div class="question">
+                <h3>9. How often does balancing a part-time job with your personal life make you feel burdened?</h3>
+                <div class="options">
+                    <label><input type="radio" name="q9" value="1"> Never</label>
+                    <label><input type="radio" name="q9" value="2"> Rarely</label>
+                    <label><input type="radio" name="q9" value="3"> Sometimes</label>
+                    <label><input type="radio" name="q9" value="4"> Often</label>
+                    <label><input type="radio" name="q9" value="5"> Always</label>
+                </div>
+            </div>
+            
+            <button type="submit">Submit</button>
+        </form>
+        
+        <h2>{{ result }}</h2>
+
+   
+    </div>
+</body>
+</html>

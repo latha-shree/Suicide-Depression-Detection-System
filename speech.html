@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mental Health Check: Recognizing Emotional Distress</title>
+    <!-- Add some external fonts and styles -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f4f7fc;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        h1 {
+            color: #4CAF50;
+            margin-bottom: 20px;
+            font-size: 34px;
+            text-align: center;
+        }
+
+        #camera-box {
+            width: 80%;
+            max-width: 450px;
+            height: auto;
+            margin-bottom: 20px;
+            border: 3px solid #4CAF50;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        #webcam {
+            width: 100%;
+            height: auto;
+        }
+
+        #emotion-label {
+            text-align: center;
+            font-size: 20px;
+            color: #555;
+            font-weight: 500;
+            padding: 10px 0;
+        }
+
+        .btn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 30px;
+            font-size: 18px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn:hover {
+            background-color: #45a049;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 800px;
+            padding: 20px;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        form {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        @media (max-width: 768px) {
+            #camera-box {
+                width: 90%;
+            }
+
+            h1 {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>  Predicting Suicidal Attempts by Mental Health Check: Recognizing Emotional Distress </h1>
+        <h2>Answer any one questions?</h2>
+        <ul>
+            <li>Are you stressed?</li>
+            <li>Difficulty finding reasons to stay positive?</li>
+            <li>Do you need someone to talk to about how you're feeling?</li>
+        </ul>
+        
+        <!-- Webcam Feed Display -->
+        <div id="camera-box">
+            <video id="webcam" autoplay></video>
+            <p id="emotion-label">Analyzing emotions...</p>
+        </div>
+
+        <!-- Speech Recognition Button -->
+        <form action="{{ url_for('speech_recognition') }}" method="POST">
+            <button type="submit" id="start-speech" class="btn">Start Speech Recognition</button>
+        </form>
+    </div>
+
+    <script>
+        // Webcam setup
+        const webcam = document.getElementById('webcam');
+        const emotionLabel = document.getElementById('emotion-label');
+
+        // Start the webcam
+        navigator.mediaDevices.getUserMedia({ video: true })
+            .then((stream) => {
+                webcam.srcObject = stream;
+            })
+            .catch((error) => {
+                console.error('Error accessing webcam:', error);
+            });
+
+        // Function to capture the emotion (for simulation purposes)
+        function detectEmotion() {
+            // For simplicity, you would update this with the actual emotion detection
+            // logic in your backend or JavaScript (e.g., by calling the emotion recognition model).
+            const emotions = ['Happy', 'Sad', 'Anxious', 'Worried', 'Neutral'];
+            const randomEmotion = emotions[Math.floor(Math.random() * emotions.length)];
+
+            // Display the detected emotion
+            emotionLabel.textContent = `Detected Emotion: ${randomEmotion}`;
+        }
+
+        // Update the emotion every second
+        setInterval(detectEmotion, 1000);
+    </script>
+</body>
+</html>

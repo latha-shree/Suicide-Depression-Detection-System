@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suicidal Prediction Results</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #e0f7fa;
+            margin: 0;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 0 auto;
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #004d40;
+            margin-bottom: 30px;
+        }
+
+        h2 {
+            color: #c62828;
+            margin-top: 20px;
+        }
+
+        pre {
+            background-color: #ffcdd2;
+            color: #000;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 16px;
+            text-align: left;
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+
+        .result {
+            font-size: 22px;
+            font-weight: bold;
+            color: #d32f2f;
+            margin: 20px 0;
+        }
+
+        .button {
+            margin-top: 30px;
+        }
+
+        .button a {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: #007BFF;
+            color: white;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        .button a:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Suicidal Prediction Results</h1>
+
+        <h2>All Results:</h2>
+        <pre>{{ result_content }}</pre>
+
+        <div class="result">
+            Final Prediction Result: {{ final_evaluation }}
+        </div>
+
+        <div class="button">
+            <a href="{{ url_for('home') }}">Go Back</a>
+        </div>
+    </div>
+</body>
+</html>
