@@ -90,4 +90,5 @@ Integration with emergency helpline APIs for high-risk detection
 Real-time chatbot with NLP (Dialogflow/GPT)
 
 ![home](https://github.com/latha-shree/Suicide-Depression-Detection-System/blob/main/home.png)
+![login](https://github.com/latha-shree/Suicide-Depression-Detection-System/blob/main/login.png)
 
