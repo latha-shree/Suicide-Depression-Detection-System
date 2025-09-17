@@ -94,5 +94,6 @@ Real-time chatbot with NLP (Dialogflow/GPT)
 ![any](https://github.com/latha-shree/Suicide-Depression-Detection-System/blob/main/analys.png)
 ![face](https://github.com/latha-shree/Suicide-Depression-Detection-System/blob/main/face.png)
 ![stress](https://github.com/latha-shree/Suicide-Depression-Detection-System/blob/main/stress_result.png)
+![final](https://github.com/latha-shree/Suicide-Depression-Detection-System/blob/main/final.png)
 
 
